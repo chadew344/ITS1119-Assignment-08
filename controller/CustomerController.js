@@ -4,9 +4,7 @@ import { db } from "../db/DB.js";
 $(document).ready(function () {
   console.log("Document is ready");
 
-  $("#navTitle").text("Customer Manage");
-
-  $("#registration").submit(function (e) {
+  $("#customerRegistration").submit(function (e) {
     e.preventDefault();
     if (isValidated()) {
       let customer = new Customer(
@@ -18,7 +16,7 @@ $(document).ready(function () {
 
       db.customers.push(customer);
       addToTable(customer);
-      $("#registration")[0].reset();
+      $("#customerRegistration")[0].reset();
 
       //   for (let color of db.customers) {
       //     console.log(color);
