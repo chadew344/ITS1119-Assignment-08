@@ -6,6 +6,11 @@ $(document).ready(function () {
 
   $("saveItem").on("click", function (e) {});
 
+  $("#itemLink").on("click", function () {
+    $("#itemCode").val(generateNextItemCode());
+    console.log("item-page loads");
+  });
+
   $("#itemEntry").submit(function (e) {
     e.preventDefault();
     if (isValidated()) {
@@ -19,6 +24,8 @@ $(document).ready(function () {
       db.items.push(item);
       addToTable(item);
       $("#itemEntry")[0].reset();
+
+      $("#itemCode").val(generateNextItemCode());
     }
   });
 
@@ -31,5 +38,21 @@ $(document).ready(function () {
 
   function isValidated() {
     return true;
+  }
+
+  function generateNextItemCode() {
+    if (db.items.length > 0) {
+      let lastItemCode = db.items[db.items.length - 1].code;
+
+      const numberPart = lastItemCode.split("-")[1];
+
+      const nextNumber = parseInt(numberPart, 10) + 1;
+
+      const nextId = `I00-${nextNumber.toString().padStart(3, "0")}`;
+
+      return nextId;
+    } else {
+      return "I00-001";
+    }
   }
 });

@@ -4,6 +4,11 @@ import { db } from "../db/DB.js";
 $(document).ready(function () {
   console.log("Document is ready");
 
+  $("#customerLink").on("click", function () {
+    $("#customerId").val(generateNewCustId());
+    console.log("cust-page loads");
+  });
+
   $("#customerRegistration").submit(function (e) {
     e.preventDefault();
     if (isValidated()) {
@@ -18,9 +23,11 @@ $(document).ready(function () {
       addToTable(customer);
       $("#customerRegistration")[0].reset();
 
-      //   for (let color of db.customers) {
-      //     console.log(color);
-      //   }
+      $("#customerId").val(generateNewCustId());
+
+      for (let customer of db.customers) {
+        console.log(customer.id);
+      }
     }
   });
 
@@ -33,5 +40,21 @@ $(document).ready(function () {
 
   function isValidated() {
     return true;
+  }
+
+  function generateNewCustId() {
+    if (db.customers.length > 0) {
+      let lastCustId = db.customers[db.customers.length - 1].id;
+
+      const numberPart = lastCustId.split("-")[1];
+
+      const nextNumber = parseInt(numberPart, 10) + 1;
+
+      const nextId = `C00-${nextNumber.toString().padStart(3, "0")}`;
+
+      return nextId;
+    } else {
+      return "C00-001";
+    }
   }
 });
