@@ -225,6 +225,10 @@ $(document).ready(function () {
 
     isValid = checkStock(parseInt(qty));
 
+    if (isValid) {
+      $("#orderQtyError").text("");
+    }
+
     return isValid;
   }
 
@@ -272,6 +276,7 @@ $(document).ready(function () {
           updateBill();
 
           loadCartTable();
+          $("#inventory")[0].reset();
 
           sameItemUpdate = true;
           isValid = false;
