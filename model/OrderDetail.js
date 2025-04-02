@@ -1,7 +1,7 @@
 class OrderDetail {
-  constructor(orderId, itemId, qty, unitPrice) {
+  constructor(orderId, itemCode, qty, unitPrice) {
     this.orderId = orderId;
-    this.itemId = itemId;
+    this.itemCode = itemCode;
     this.qty = qty;
     this.unitPrice = unitPrice;
   }

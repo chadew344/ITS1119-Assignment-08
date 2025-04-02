@@ -1,9 +1,10 @@
 class Order {
-  constructor(orderId, date, custId, orderDetials) {
+  constructor(orderId, date, custId, totalBill, discount) {
     this.orderId = orderId;
     this.date = date;
     this.custId = custId;
-    this.orderDetials = orderDetials;
+    this.totalBill = totalBill;
+    this.discount = discount;
   }
 }
 
